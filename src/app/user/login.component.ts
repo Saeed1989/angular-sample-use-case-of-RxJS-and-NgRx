@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { Observable } from 'rxjs';
-
 import { AuthService } from './auth.service';
-
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
 import { getMaskUserName } from './state/user.reducer';

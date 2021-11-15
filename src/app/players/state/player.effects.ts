@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-
 import { mergeMap, map, catchError, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { PlayerService } from '../services/player.service';
-
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { PlayerApiActions, PlayerPageActions } from './actions'
 

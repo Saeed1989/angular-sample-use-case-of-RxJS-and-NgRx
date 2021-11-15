@@ -1,5 +1,4 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-
 import { Player } from '../../core/modles/player';
 
 export class PlayerData implements InMemoryDbService {
