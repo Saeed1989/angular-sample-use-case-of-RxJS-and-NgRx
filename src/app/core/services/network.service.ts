@@ -15,7 +15,7 @@ export class NetworkService {
 
   getAllPlayers(): Observable<Player[]> {
     console.log('Getting all player from the server.');
-    return this.http.get<Player[]>(`/api/player`, {
+    return this.http.get<Player[]>(`/api/players`, {
       headers: new HttpHeaders({
         Accept: 'application/json',
         Authorization: 'my-token',

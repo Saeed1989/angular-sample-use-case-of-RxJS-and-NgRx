@@ -1,21 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { PlayerData } from 'src/core/constants/player-data';
+import { Player } from 'src/core/models/player.model';
 
-import { Player } from './player.model';
 
 @Injectable()
 export class PlayerService {
-  private players: Player[] = [];
 
   insertPlayer(player: Player) {
     const prodId = Math.random().toString();
     const newPlayer = { id: prodId, ...player };
-    this.players.push(newPlayer);
+    PlayerData.players.push(newPlayer);
     return prodId;
   }
 
   getPlayers() {
-    console.log(this.players);
-    return [...this.players];
+    return PlayerData.players;
   }
 
   getSinglePlayer(playerId: string) {
@@ -25,17 +24,17 @@ export class PlayerService {
 
   updatePlayer(updatedPlayer: Player) {
     const [player, index] = this.findPlayer(updatedPlayer.id);
-    this.players[index] = { ...updatedPlayer };
+    PlayerData.players[index] = { ...updatedPlayer };
   }
 
   deletePlayer(prodId: string) {
     const index = this.findPlayer(prodId)[1];
-    this.players.splice(index, 1);
+    PlayerData.players.splice(index, 1);
   }
 
   private findPlayer(id: string): [Player, number] {
-    const playerIndex = this.players.findIndex(prod => prod.id === id);
-    const player = this.players[playerIndex];
+    const playerIndex = PlayerData.players.findIndex(prod => prod.id === id);
+    const player = PlayerData.players[playerIndex];
     if (!player) {
       throw new NotFoundException('Could not find player.');
     }

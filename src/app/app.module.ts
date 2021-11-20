@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { PlayerData } from './players/services/player-data';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './core/components/organisms/menu/menu.component';
@@ -14,12 +12,12 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { ShellComponent } from './core/components/pages/shell/shell.component';
 import { HomeModule } from './home/home.module';
+import { SetRootUrlInterceptor } from './core/services/set-root-url.interceptor';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(PlayerData),
     HomeModule,
     UserModule,
     AppRoutingModule,
@@ -36,6 +34,9 @@ import { HomeModule } from './home/home.module';
     ShellComponent,
     MenuComponent,
     PageNotFoundComponent,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: SetRootUrlInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })

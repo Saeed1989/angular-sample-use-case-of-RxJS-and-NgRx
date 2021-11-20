@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Player } from '../../core/modles/player';
+import { NetworkService } from 'src/app/core/services/network.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,47 +11,46 @@ import { Player } from '../../core/modles/player';
 export class PlayerService {
   private playersUrl = 'api/players';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private networkService: NetworkService
+  ) {}
 
   getPlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.playersUrl)
-      .pipe(
-        tap(data => console.log(JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+    return this.networkService.getAllPlayers().pipe(
+      tap((data) => console.log(JSON.stringify(data))),
+      catchError(this.handleError)
+    );
   }
 
   createPlayer(player: Player): Observable<Player> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // Player Id must be null for the Web API to assign an Id
     const newPlayer = { ...player, id: null };
-    return this.http.post<Player>(this.playersUrl, newPlayer, { headers })
-      .pipe(
-        tap(data => console.log('createPlayer: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+    return this.http.post<Player>(this.playersUrl, newPlayer, { headers }).pipe(
+      tap((data) => console.log('createPlayer: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
   }
 
   deletePlayer(id: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.playersUrl}/${id}`;
-    return this.http.delete<Player>(url, { headers })
-      .pipe(
-        tap(data => console.log('deletePlayer: ' + id)),
-        catchError(this.handleError)
-      );
+    return this.http.delete<Player>(url, { headers }).pipe(
+      tap((data) => console.log('deletePlayer: ' + id)),
+      catchError(this.handleError)
+    );
   }
 
   updatePlayer(player: Player): Observable<Player> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `${this.playersUrl}/${player.id}`;
-    return this.http.put<Player>(url, player, { headers })
-      .pipe(
-        tap(() => console.log('updatePlayer: ' + player.id)),
-        // Return the player on an update
-        map(() => player),
-        catchError(this.handleError)
-      );
+    return this.http.put<Player>(url, player, { headers }).pipe(
+      tap(() => console.log('updatePlayer: ' + player.id)),
+      // Return the player on an update
+      map(() => player),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: any) {
@@ -68,5 +68,4 @@ export class PlayerService {
     console.error(err);
     return throwError(errorMessage);
   }
-
 }
