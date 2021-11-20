@@ -22,14 +22,13 @@ export class PlayerController {
     @Body('starRating') starRating: string,
   ) {
     console.log(playerName);
-    const generatedId = this.playersService.insertPlayer({
+    return this.playersService.insertPlayer({
       id: null,
       playerName: playerName || null,
       jerseyNumber: jerseyNumber || null,
       description: description || null,
       starRating: starRating || null,
     });
-    return { id: generatedId };
   }
 
   @Get()
@@ -50,19 +49,17 @@ export class PlayerController {
     @Body('description') description: string,
     @Body('starRating') starRating: string,
   ) {
-    this.playersService.updatePlayer({
+    return this.playersService.updatePlayer({
       id: id,
       playerName: playerName || null,
       jerseyNumber: jerseyNumber || null,
       description: description || null,
       starRating: starRating || null,
     });
-    return null;
   }
 
   @Delete(':id')
   removePlayer(@Param('id') prodId: string) {
-    this.playersService.deletePlayer(prodId);
-    return null;
+    return this.playersService.deletePlayer(prodId);
   }
 }

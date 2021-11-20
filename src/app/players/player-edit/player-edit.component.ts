@@ -61,7 +61,7 @@ export class PlayerEditComponent implements OnInit {
         ],
       ],
       jerseyNumber: ['', Validators.required],
-      starRating: ['', NumberValidators.range(1, 5)],
+      starRating: ['', NumberValidators.range(1, 10)],
       description: '',
     });
 

@@ -24,7 +24,7 @@ export class NetworkService {
   }
 
   getPlayerById(id: number): Observable<Player> {
-    return this.http.get<Player>(`/api/player/${id}`, {
+    return this.http.get<Player>(`/api/players/${id}`, {
       headers: new HttpHeaders({
         Accept: 'application/json',
         Authorization: 'my-token',
@@ -33,7 +33,7 @@ export class NetworkService {
   }
 
   addPlayer(player: Player): Observable<Player> {
-    return this.http.post<Player>('/api/player', player, {
+    return this.http.post<Player>('/api/players', player, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
@@ -41,8 +41,8 @@ export class NetworkService {
   }
 
   updatePlayer(updatedPlayer: Player): Observable<void> {
-    return this.http.put<void>(
-      `/api/player/${updatedPlayer.id}`,
+    return this.http.patch<void>(
+      `/api/players/${updatedPlayer.id}`,
       updatedPlayer,
       {
         headers: new HttpHeaders({
@@ -52,7 +52,7 @@ export class NetworkService {
     );
   }
 
-  deletePlayer(bookID: number): Observable<void> {
-    return this.http.delete<void>(`/api/player/${bookID}`);
+  deletePlayer(playerID: number): Observable<void> {
+    return this.http.delete<void>(`/api/players/${playerID}`);
   }
 }
