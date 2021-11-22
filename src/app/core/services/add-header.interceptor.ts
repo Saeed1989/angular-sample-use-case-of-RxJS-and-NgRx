@@ -13,7 +13,13 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log(`AddHeaderInterceptor - ${req.url}`);
-    return next.handle(req);
+    const userToken = 'dummy-user-token';
+    req.headers.set('Authorization', `${userToken}`);
+    let modifiedReq = req.clone({
+      headers: req.headers
+        .set('Authorization', userToken)
+        .set('Accept', 'application/json'),
+    });
+    return next.handle(modifiedReq);
   }
 }

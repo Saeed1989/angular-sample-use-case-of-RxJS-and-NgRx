@@ -15,40 +15,21 @@ export class NetworkService {
 
   getAllPlayers(): Observable<Player[]> {
     console.log('Getting all player from the server.');
-    return this.http.get<Player[]>(`/api/players`, {
-      headers: new HttpHeaders({
-        Accept: 'application/json',
-        Authorization: 'my-token',
-      }),
-    });
+    return this.http.get<Player[]>(`/api/players`);
   }
 
   getPlayerById(id: number): Observable<Player> {
-    return this.http.get<Player>(`/api/players/${id}`, {
-      headers: new HttpHeaders({
-        Accept: 'application/json',
-        Authorization: 'my-token',
-      }),
-    });
+    return this.http.get<Player>(`/api/players/${id}`);
   }
 
   addPlayer(player: Player): Observable<Player> {
-    return this.http.post<Player>('/api/players', player, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    });
+    return this.http.post<Player>('/api/players', player);
   }
 
   updatePlayer(updatedPlayer: Player): Observable<void> {
     return this.http.patch<void>(
       `/api/players/${updatedPlayer.id}`,
-      updatedPlayer,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-        }),
-      }
+      updatedPlayer
     );
   }
 

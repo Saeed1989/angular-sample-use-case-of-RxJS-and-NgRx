@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { SetRootUrlInterceptor } from './core/services/set-root-url.interceptor';
 import { LoadingIndicatorComponent } from './core/components/organisms/loading-indicator/loading-indicator.component';
 import { loadingReducer } from './state/loading.reducer';
+import { AddHeaderInterceptor } from './core/services/add-header.interceptor';
 
 @NgModule({
   imports: [
@@ -37,10 +38,15 @@ import { loadingReducer } from './state/loading.reducer';
     ShellComponent,
     MenuComponent,
     PageNotFoundComponent,
-    LoadingIndicatorComponent
+    LoadingIndicatorComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: SetRootUrlInterceptor, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SetRootUrlInterceptor,
+      multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
