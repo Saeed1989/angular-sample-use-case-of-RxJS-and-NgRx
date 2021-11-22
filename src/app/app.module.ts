@@ -13,6 +13,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ShellComponent } from './core/components/pages/shell/shell.component';
 import { HomeModule } from './home/home.module';
 import { SetRootUrlInterceptor } from './core/services/set-root-url.interceptor';
+import { LoadingIndicatorComponent } from './core/components/organisms/loading-indicator/loading-indicator.component';
+import { loadingReducer } from './state/loading.reducer';
 
 @NgModule({
   imports: [
@@ -28,12 +30,14 @@ import { SetRootUrlInterceptor } from './core/services/set-root-url.interceptor'
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    StoreModule.forFeature('loading', loadingReducer),
   ],
   declarations: [
     AppComponent,
     ShellComponent,
     MenuComponent,
     PageNotFoundComponent,
+    LoadingIndicatorComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SetRootUrlInterceptor, multi: true }
