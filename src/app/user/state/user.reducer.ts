@@ -1,4 +1,4 @@
-import { User } from '../../core/modles/user';
+import { User } from '../../core/modles/user.model';
 import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as UserActions from './user.actions';
 

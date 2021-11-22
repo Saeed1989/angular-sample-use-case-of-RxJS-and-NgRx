@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Player } from '../core/modles/player';
+import { Player } from '../core/modles/player.model';
 import { Store } from '@ngrx/store';
 import {
   State,

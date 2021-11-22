@@ -24,6 +24,7 @@
     "@ngrx/store": "^9.2.1",
     "@ngrx/store-devtools": "^9.2.1",
     "bootstrap": "^4.6.1",
+    "ng-block-ui": "^3.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.14.1",
     "zone.js": "~0.10.2"

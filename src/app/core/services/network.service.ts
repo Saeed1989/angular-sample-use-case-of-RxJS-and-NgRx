@@ -5,7 +5,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Player } from '../modles/player';
+import { Player } from '../modles/player.model';
 
 @Injectable({
   providedIn: 'root',

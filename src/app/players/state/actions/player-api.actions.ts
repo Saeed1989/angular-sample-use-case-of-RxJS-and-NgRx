@@ -1,4 +1,4 @@
-import { Player } from '../../../core/modles/player';
+import { Player } from '../../../core/modles/player.model';
 import { createAction, props } from '@ngrx/store';
 
 export const loadPlayersSuccess = createAction(

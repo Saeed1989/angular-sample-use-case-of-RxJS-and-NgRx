@@ -1,4 +1,4 @@
-import { Player } from '../../core/modles/player';
+import { Player } from '../../core/modles/player.model';
 import { PlayerApiActions, PlayerPageActions } from './actions';
 import { createReducer, on } from '@ngrx/store';
 

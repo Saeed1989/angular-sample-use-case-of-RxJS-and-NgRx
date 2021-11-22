@@ -2,7 +2,7 @@
  * Functions of this class converts data form one form to another
  */
 
-import { ErrorMessages } from "../constants/error-messages";
+import { ErrorMessages } from "../constants/error-messages.constant";
 
 export class ConvertUtil {
   /**

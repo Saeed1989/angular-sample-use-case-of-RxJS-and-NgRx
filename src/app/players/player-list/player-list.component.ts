@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Player } from '../../core/modles/player';
+import { Player } from '../../core/modles/player.model';
 
 @Component({
   selector: 'app-player-list',

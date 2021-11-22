@@ -16,6 +16,7 @@ import { SetRootUrlInterceptor } from './core/services/set-root-url.interceptor'
 import { LoadingIndicatorComponent } from './core/components/organisms/loading-indicator/loading-indicator.component';
 import { loadingReducer } from './state/loading.reducer';
 import { AddHeaderInterceptor } from './core/services/add-header.interceptor';
+import { BlockUIModule } from 'ng-block-ui';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { AddHeaderInterceptor } from './core/services/add-header.interceptor';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    BlockUIModule.forRoot(),
     StoreModule.forFeature('loading', loadingReducer),
   ],
   declarations: [
