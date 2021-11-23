@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
 import { getMaskUserName } from './state/user.reducer';
 import * as UserActions from './state/user.actions';
+import { AuthService } from '../core/services/auth.service';
+import { SelfUrl } from '../core/constants/url.constant';
 
 @Component({
   templateUrl: './login.component.html',
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
       if (this.authService.redirectUrl) {
         this.router.navigateByUrl(this.authService.redirectUrl);
       } else {
-        this.router.navigate(['/players']);
+        this.router.navigate([SelfUrl.HOME]);
       }
     }
   }

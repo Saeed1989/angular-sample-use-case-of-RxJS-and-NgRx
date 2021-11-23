@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthService } from '../../../../user/auth.service';
+import { SelfUrl } from 'src/app/core/constants/url.constant';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -27,6 +27,6 @@ export class MenuComponent implements OnInit {
 
   logOut(): void {
     this.authService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate([SelfUrl.LOGIN]);
   }
 }
