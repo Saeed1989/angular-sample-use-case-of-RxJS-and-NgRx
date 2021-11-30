@@ -8,7 +8,7 @@ import {
   getCurrentPlayer,
   getPlayers,
   getError,
-} from './state';
+} from './state/player.selectors';
 import { PlayerPageActions } from './state/actions';
 
 @Component({

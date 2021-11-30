@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Player } from '../../core/modles/player.model';
-import { GenericValidator } from '../../shared/generic-validator';
-import { NumberValidators } from '../../shared/number.validator';
+import { NumberValidators } from '../../core/validators/number.validator';
+import { GenericValidator } from 'src/app/core/validators/generic-validator';
 
 /* NgRx */
 import { Store } from '@ngrx/store';
-import { State, getCurrentPlayer } from '../state';
+import { State, getCurrentPlayer } from '../state/player.selectors';
 import { PlayerPageActions } from '../state/actions';
+
 
 @Component({
   selector: 'app-player-edit',

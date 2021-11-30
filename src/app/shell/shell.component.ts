@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { State } from 'src/app/state/app.state';
 import { getCurrentLoading } from 'src/app/state/loading.reducer';
-import { LoadingIndicatorComponent } from '../../organisms/loading-indicator/loading-indicator.component';
+import { LoadingIndicatorComponent } from '../shared/components/organisms/loading-indicator/loading-indicator.component';
 
 @Component({
   selector: 'app-shell',

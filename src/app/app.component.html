@@ -1,1 +1,7 @@
-<app-shell></app-shell>
+<block-ui [template]="blockTemplate">
+  <app-menu></app-menu>
+
+  <div class="container main-content">
+    <router-outlet></router-outlet>
+  </div>
+</block-ui>
