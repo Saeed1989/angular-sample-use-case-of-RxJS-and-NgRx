@@ -1,3 +1,3 @@
 <div *ngFor="let alert of alerts">
-  {{ alert.message }}
+  {{ alert.date | date: "dd/MM/yyyy" }} : {{ alert.message }}
 </div>

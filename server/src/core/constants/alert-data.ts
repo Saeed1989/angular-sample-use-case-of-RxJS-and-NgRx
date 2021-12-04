@@ -9,17 +9,17 @@ export class AlertData {
     {
       id: '1',
       message: 'This is dummy alert 1',
-      date: new Date('20210102'),
+      date: new Date('2021/01/02'),
     },
     {
       id: '2',
       message: 'This is dummy alert 2',
-      date: new Date('20210203'),
+      date: new Date('2021/02/03'),
     },
     {
       id: '5',
       message: 'This is dummy alert 3',
-      date: new Date('20210304'),
+      date: new Date('2021/03/04'),
     },
   ];
 }
