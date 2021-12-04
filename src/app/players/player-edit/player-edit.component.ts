@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -7,28 +15,27 @@ import { NumberValidators } from '../../core/validators/number.validator';
 import { GenericValidator } from 'src/app/core/validators/generic-validator';
 
 /* NgRx */
-import { Store } from '@ngrx/store';
-import { State, getCurrentPlayer } from '../state/player.selectors';
-import { PlayerPageActions } from '../state/actions';
-
 
 @Component({
   selector: 'app-player-edit',
   templateUrl: './player-edit.component.html',
 })
-export class PlayerEditComponent implements OnInit {
+export class PlayerEditComponent implements OnInit, OnChanges {
   pageTitle = 'Player Edit';
   errorMessage = '';
   playerForm: FormGroup;
+  @Input() selectedPlayer: Player;
 
-  player$: Observable<Player | null>;
+  @Output() create = new EventEmitter<boolean>();
+  @Output() update = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<Player>();
 
   // Use with the generic validation message class
   displayMessage: { [key: string]: string } = {};
   private validationMessages: { [key: string]: { [key: string]: string } };
   private genericValidator: GenericValidator;
 
-  constructor(private store: Store<State>, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     // Defines all of the validation messages for the form.
     // These could instead be retrieved from a file or database.
     this.validationMessages = {
@@ -66,11 +73,6 @@ export class PlayerEditComponent implements OnInit {
       description: '',
     });
 
-    // Watch for changes to the currently selected player
-    this.player$ = this.store
-      .select(getCurrentPlayer)
-      .pipe(tap((currentPlayer) => this.displayPlayer(currentPlayer)));
-
     // Watch for value changes for validation
     this.playerForm.valueChanges.subscribe(
       () =>
@@ -78,6 +80,14 @@ export class PlayerEditComponent implements OnInit {
           this.playerForm
         ))
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let change = changes['selectedPlayer'];
+
+    if (change && !change.firstChange) {
+      this.displayPlayer(change.currentValue);
+    }
   }
 
   // Also validate on blur
@@ -117,16 +127,7 @@ export class PlayerEditComponent implements OnInit {
   }
 
   deletePlayer(player: Player): void {
-    if (player && player.id) {
-      if (confirm(`Really delete the player: ${player.playerName}?`)) {
-        this.store.dispatch(
-          PlayerPageActions.deletePlayer({ playerId: player.id })
-        );
-      }
-    } else {
-      // No need to delete, it was never saved
-      this.store.dispatch(PlayerPageActions.clearCurrentPlayer());
-    }
+    this.delete.emit(player);
   }
 
   savePlayer(originalPlayer: Player): void {
@@ -138,9 +139,9 @@ export class PlayerEditComponent implements OnInit {
         const player = { ...originalPlayer, ...this.playerForm.value };
 
         if (player.id === 0) {
-          this.store.dispatch(PlayerPageActions.createPlayer({ player }));
+          this.create.emit(player);
         } else {
-          this.store.dispatch(PlayerPageActions.updatePlayer({ player }));
+          this.update.emit(player);
         }
       }
     }

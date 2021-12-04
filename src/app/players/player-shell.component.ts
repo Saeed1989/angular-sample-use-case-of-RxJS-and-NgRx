@@ -43,4 +43,29 @@ export class PlayerShellComponent implements OnInit {
       PlayerPageActions.setCurrentPlayer({ currentPlayerId: player.id })
     );
   }
+
+  deletePlayer(player: Player): void {
+    if (player && player.id) {
+      if (confirm(`Really delete the player: ${player.playerName}?`)) {
+        this.store.dispatch(
+          PlayerPageActions.deletePlayer({ playerId: player.id })
+        );
+      }
+    } else {
+      // No need to delete, it was never saved
+      this.store.dispatch(PlayerPageActions.clearCurrentPlayer());
+    }
+  }
+
+  savePlayer(player: Player): void {
+    if (player) {
+      this.store.dispatch(PlayerPageActions.createPlayer({ player }));
+    }
+  }
+
+  updatePlayer(player: Player): void {
+    if (player) {
+      this.store.dispatch(PlayerPageActions.updatePlayer({ player }));
+    }
+  }
 }

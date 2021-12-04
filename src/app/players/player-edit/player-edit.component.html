@@ -1,84 +1,89 @@
-<div class="card"
-     *ngIf="player$ | async as player">
+<div class="card" *ngIf="selectedPlayer as player">
   <div class="card-header bg-light">
-    {{pageTitle}}
+    {{ pageTitle }}
   </div>
   <div class="card-body">
-    <form novalidate
-          (ngSubmit)="savePlayer(player)"
-          [formGroup]="playerForm">
+    <form novalidate (ngSubmit)="savePlayer(player)" [formGroup]="playerForm">
       <fieldset>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="playerNameId">Player Name</label>
+          <label class="col-md-3 col-form-label" for="playerNameId"
+            >Player Name</label
+          >
 
           <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.playerName }"
-                   class="form-control"
-                   id="playerNameId"
-                   type="text"
-                   placeholder="Name (required)"
-                   formControlName="playerName"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.playerName">
-              {{displayMessage.playerName}}
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.playerName }"
+              class="form-control"
+              id="playerNameId"
+              type="text"
+              placeholder="Name (required)"
+              formControlName="playerName"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.playerName">
+              {{ displayMessage.playerName }}
             </span>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="playerCodeId">Jersey Number</label>
+          <label class="col-md-3 col-form-label" for="playerCodeId"
+            >Jersey Number</label
+          >
 
           <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.jerseyNumber}"
-                   class="form-control"
-                   id="playerCodeId"
-                   type="text"
-                   placeholder="Code (required)"
-                   formControlName="jerseyNumber"
-                   (blur)="blur()" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.jerseyNumber">
-              {{displayMessage.jerseyNumber}}
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.jerseyNumber }"
+              class="form-control"
+              id="playerCodeId"
+              type="text"
+              placeholder="Code (required)"
+              formControlName="jerseyNumber"
+              (blur)="blur()"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.jerseyNumber">
+              {{ displayMessage.jerseyNumber }}
             </span>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="starRatingId">Star Rating (1-10)</label>
+          <label class="col-md-3 col-form-label" for="starRatingId"
+            >Star Rating (1-10)</label
+          >
 
           <div class="col-md-9">
-            <input [ngClass]="{'is-invalid': displayMessage.starRating}"
-                   class="form-control"
-                   id="starRatingId"
-                   type="text"
-                   placeholder="Rating"
-                   formControlName="starRating" />
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.starRating">
-              {{displayMessage.starRating}}
+            <input
+              [ngClass]="{ 'is-invalid': displayMessage.starRating }"
+              class="form-control"
+              id="starRatingId"
+              type="text"
+              placeholder="Rating"
+              formControlName="starRating"
+            />
+            <span class="invalid-feedback" *ngIf="displayMessage.starRating">
+              {{ displayMessage.starRating }}
             </span>
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-md-3 col-form-label"
-                 for="descriptionId">Description</label>
+          <label class="col-md-3 col-form-label" for="descriptionId"
+            >Description</label
+          >
 
           <div class="col-md-9">
-            <textarea [ngClass]="{'is-invalid': displayMessage.description}"
-                      class="form-control"
-                      id="descriptionId"
-                      placeholder="Description"
-                      rows=3
-                      formControlName="description">
+            <textarea
+              [ngClass]="{ 'is-invalid': displayMessage.description }"
+              class="form-control"
+              id="descriptionId"
+              placeholder="Description"
+              rows="3"
+              formControlName="description"
+            >
             </textarea>
-            <span class="invalid-feedback"
-                  *ngIf="displayMessage.description">
-              {{ displayMessage.description}}
+            <span class="invalid-feedback" *ngIf="displayMessage.description">
+              {{ displayMessage.description }}
             </span>
           </div>
         </div>
@@ -86,26 +91,32 @@
         <div class="form-group">
           <div class="col-md-10 col-md-offset-2">
             <span>
-              <button class="btn btn-primary"
-                      type="submit"
-                      style="width:80px;margin-right:10px"
-                      [disabled]="!playerForm.valid || !playerForm.dirty">
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="width: 80px; margin-right: 10px"
+                [disabled]="!playerForm.valid || !playerForm.dirty"
+              >
                 Save
               </button>
             </span>
             <span>
-              <button class="btn btn-light"
-                      type="button"
-                      style="width:80px;margin-right:10px"
-                      (click)="cancelEdit(player)">
+              <button
+                class="btn btn-light"
+                type="button"
+                style="width: 80px; margin-right: 10px"
+                (click)="cancelEdit(player)"
+              >
                 Cancel
               </button>
             </span>
             <span>
-              <button class="btn btn-light"
-                      type="button"
-                      style="width:80px"
-                      (click)="deletePlayer(player)">
+              <button
+                class="btn btn-light"
+                type="button"
+                style="width: 80px"
+                (click)="deletePlayer(player)"
+              >
                 Delete
               </button>
             </span>
@@ -115,7 +126,6 @@
     </form>
   </div>
 </div>
-<div *ngIf="errorMessage"
-     class="alert alert-danger">
+<div *ngIf="errorMessage" class="alert alert-danger">
   Error: {{ errorMessage }}
 </div>

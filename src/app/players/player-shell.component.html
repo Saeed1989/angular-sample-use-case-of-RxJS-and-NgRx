@@ -1,15 +1,22 @@
-<div class='row'>
-  <div class='col-md-4'>
-    <app-player-list [errorMessage]="errorMessage$ | async"
-                     [displayCode]="displayCode$ | async"
-                     [players]="players$ | async"
-                     [selectedPlayer]="selectedPlayer$ | async"
-                     (displayCodeChanged)="checkChanged()"
-                     (initializeNewPlayer)="newPlayer()"
-                     (playerWasSelected)="playerSelected($any($event))">
+<div class="row">
+  <div class="col-md-4">
+    <app-player-list
+      [errorMessage]="errorMessage$ | async"
+      [displayCode]="displayCode$ | async"
+      [players]="players$ | async"
+      [selectedPlayer]="selectedPlayer$ | async"
+      (displayCodeChanged)="checkChanged()"
+      (initializeNewPlayer)="newPlayer()"
+      (playerWasSelected)="playerSelected($any($event))"
+    >
     </app-player-list>
   </div>
-  <div class='col-md-8'>
-    <app-player-edit></app-player-edit>
+  <div class="col-md-8">
+    <app-player-edit
+      [selectedPlayer]="selectedPlayer$ | async"
+      (create)="savePlayer($any($event))"
+      (update)="updatePlayer($any($event))"
+      (delete)="deletePlayer($any($event))"
+    ></app-player-edit>
   </div>
 </div>

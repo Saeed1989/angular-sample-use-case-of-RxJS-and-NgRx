@@ -26,7 +26,7 @@ export const getCurrentPlayer = createSelector(
       return {
         id: 0,
         playerName: '',
-        jerseyNumber: 'New',
+        jerseyNumber: '',
         description: '',
         starRating: 0,
       };
@@ -47,4 +47,3 @@ export const getError = createSelector(
   getPlayerFeatureState,
   (state) => state.error
 );
-
