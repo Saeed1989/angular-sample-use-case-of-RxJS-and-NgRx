@@ -1,8 +1,8 @@
 ﻿<div class="card">
   <div class="card-header btn-light">
-    {{pageTitle}}
+    {{ pageTitle }}
   </div>
   <div class="card-body">
-    <app-alert></app-alert>
+    <app-alert [alerts]="alerts$ | async"></app-alert>
   </div>
 </div>

@@ -36,4 +36,8 @@ export class NetworkService {
   deletePlayer(playerID: number): Observable<void> {
     return this.http.delete<void>(`/api/players/${playerID}`);
   }
+
+  getAlerts(userId: string): Observable<void> {
+    return this.http.get<void>(`/api/alerts/${userId}`);
+  }
 }
