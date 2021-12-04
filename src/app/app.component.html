@@ -1,5 +1,5 @@
 <block-ui [template]="blockTemplate">
-  <app-menu></app-menu>
+  <app-menu *ngIf="showMenu"></app-menu>
 
   <div class="container main-content">
     <router-outlet></router-outlet>

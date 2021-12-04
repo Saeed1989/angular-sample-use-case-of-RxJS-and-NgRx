@@ -8,8 +8,6 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { State } from 'src/app/state/app.state';
-
 import { getCurrentUser, UserState } from 'src/app/user/state/user.reducer';
 import { SelfUrl } from '../constants/url.constant';
 import { AuthService } from './auth.service';

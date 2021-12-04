@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/organisms/no-page/page-not-found.component';
-import { ShellComponent } from './shell/shell.component';
 import { SelfUrl } from './core/constants/url.constant';
 import { AuthGuard } from './core/services/auth-guard.service';
 
 const appRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: SelfUrl.HOME,
+    pathMatch: 'full',
+  },
   {
     path: SelfUrl.HOME,
     canActivate: [AuthGuard],
@@ -17,7 +21,6 @@ const appRoutes: Routes = [
     loadChildren: () =>
       import('./players/player.module').then((m) => m.PlayerModule),
   },
-  { path: '', redirectTo: SelfUrl.HOME, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
