@@ -6,3 +6,6 @@
     <app-alert [alerts]="alerts$ | async"></app-alert>
   </div>
 </div>
+<div *ngIf="errorMessage$ | async" class="alert alert-danger">
+  Error: {{ errorMessage$ | async }}
+</div>

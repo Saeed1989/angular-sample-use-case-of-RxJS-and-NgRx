@@ -26,7 +26,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.store.select(getCurrentLoading).subscribe((val) => {
       if (val) {
         this.blockUI.start();
-        this.blockUI.stop();
       } else {
         this.blockUI.stop();
       }

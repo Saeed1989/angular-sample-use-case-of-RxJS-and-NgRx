@@ -5,7 +5,7 @@ import { Alert } from '../core/modles/alert.model';
 import { State } from '../state/app.state';
 import { getCurrentUser } from '../user/state/user.reducer';
 import { AlertPageActions } from './state/actions';
-import { getAlerts } from './state/alert.selectors';
+import { getAlerts, getError } from './state/alert.selectors';
 
 @Component({
   templateUrl: './home.component.html',
@@ -14,6 +14,8 @@ export class HomeComponent {
   public pageTitle = 'Welcome';
 
   alerts$: Observable<Alert[]>;
+
+  errorMessage$: Observable<string>;
 
   constructor(private store: Store<State>) {}
 
@@ -24,5 +26,6 @@ export class HomeComponent {
       );
     });
     this.alerts$ = this.store.select(getAlerts);
+    this.errorMessage$ = this.store.select(getError);
   }
 }
