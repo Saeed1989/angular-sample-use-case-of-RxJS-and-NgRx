@@ -9,9 +9,7 @@ import * as LoadingPageActions from 'src/app/state/loading.actions';
 import { AppFetchErrorHandlerService } from 'src/app/core/services/fetch-error-handler.service';
 import { Alert } from 'src/app/core/modles/alert.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AlertService {
   constructor(
     private appFetchErrorHandlerService: AppFetchErrorHandlerService,

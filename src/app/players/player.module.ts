@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { PlayerShellComponent } from './player-shell.component';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { PlayerEditComponent } from './player-edit/player-edit.component';
+import { PlayerService } from './services/player.service';
 
 /* NgRx */
 import { StoreModule } from '@ngrx/store';
@@ -25,5 +26,6 @@ const playerRoutes: Routes = [{ path: '', component: PlayerShellComponent }];
     PlayerListComponent,
     PlayerEditComponent,
   ],
+  providers: [PlayerService],
 })
 export class PlayerModule {}

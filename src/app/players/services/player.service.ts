@@ -8,9 +8,7 @@ import { State } from 'src/app/state/app.state';
 import * as LoadingPageActions from 'src/app/state/loading.actions';
 import { AppFetchErrorHandlerService } from 'src/app/core/services/fetch-error-handler.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PlayerService {
   constructor(
     private appFetchErrorHandlerService: AppFetchErrorHandlerService,

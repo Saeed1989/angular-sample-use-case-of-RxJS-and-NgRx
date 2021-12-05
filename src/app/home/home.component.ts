@@ -20,7 +20,7 @@ export class HomeComponent {
   ngOnInit(): void {
     this.store.select(getCurrentUser).subscribe((user) => {
       this.store.dispatch(
-        AlertPageActions.loadAlerts({ userId: (user.id || '').toString() })
+        AlertPageActions.loadAlerts({ userId: (user?.id || '').toString() })
       );
     });
     this.alerts$ = this.store.select(getAlerts);

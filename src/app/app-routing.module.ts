@@ -21,6 +21,10 @@ const appRoutes: Routes = [
     loadChildren: () =>
       import('./players/player.module').then((m) => m.PlayerModule),
   },
+  {
+    path: SelfUrl.LOGIN,
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
