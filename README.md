@@ -59,4 +59,4 @@ Password: testPassword<br/>
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/Saeed1989/angular-sample-use-case-of-RxJS-and-NgRx/blob/main/LICENSE)
