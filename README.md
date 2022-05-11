@@ -1,9 +1,5 @@
 # Angular-NgRx-RxJS-Demo
 
-This is an Angular web app project.
-
-## About
-
 This SPA is a demonstration of how NgRx and RxJS can be used in an Angular based client project for state management and reactive architecture.
 Note: The server project running alongside this project is only a mock API server in which CRUID operations are possible, but there is no real database storage. <br/><br/>
 ![](architecture.png)
